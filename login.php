@@ -4,7 +4,7 @@ include 'conn.php';
 $user= '';
 if($_SERVER["REQUEST_METHOD"] == "POST") {
   $user = $_POST['user'];
-  $sql = "SELECT email, pass, user_role FROM users WHERE email = '".$_POST['user']."'";
+  $sql = "SELECT id, `name`, email, pass, user_role FROM users WHERE email = '".$_POST['user']."'";
   // echo $sql;
   $result = mysqli_query($conn, $sql);
 
@@ -15,6 +15,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         if($row["pass"] == $_POST['pass']) {
           $_SESSION['USER'] = $row["email"];
           $_SESSION['USER_ROLE'] = $row["user_role"];
+          $_SESSION['USER_ID'] = $row["id"];
+          $_SESSION['NAME'] = $row["name"];
+          $_SESSION['Email'] = $row["email"];
+          // var_dump($row);
 
           header("Location: distributer.php");
 
@@ -22,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
           echo 'Password doesnot match';
         }
-      }
+      }exit;
     }
   } else {
     echo "0 results";

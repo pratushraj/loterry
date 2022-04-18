@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2022 at 06:24 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.4.24
+-- Generation Time: Apr 18, 2022 at 09:52 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `dealer` (
   `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `c_name` varchar(255) NOT NULL,
   `phone` bigint(20) NOT NULL,
@@ -44,19 +45,61 @@ CREATE TABLE `dealer` (
 -- Dumping data for table `dealer`
 --
 
-INSERT INTO `dealer` (`id`, `name`, `c_name`, `phone`, `address`, `incentive`, `mor`, `day`, `eve`, `tms`) VALUES
-(1, 'Pratush Raj', 'Pratush', 2147483647, 'kolkata', 11, 2334, 233, 23, '2022-04-14 10:10:08'),
-(2, 'Pratush Raj', 'Pratush', 2147483647, 'kolkata', 11, 23, 23, 23, '2022-04-14 10:12:17'),
-(3, 'Pratush Raj', 'Pratush', 2147483647, 'dcdc', 11, 343222, 33243, 43543, '2022-04-15 11:32:08'),
-(4, 'Chicks', 'Pratush', 2147483647, 'kolkata', 11, 43, 34, 23, '2022-04-15 11:32:48'),
-(5, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:33:37'),
-(6, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:33:56'),
-(7, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 45, 543, 54, '2022-04-15 11:34:36'),
-(8, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:34:55'),
-(9, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:35:34'),
-(10, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:35:59'),
-(11, 'Mithilesh Kumar', 'Pratush', 6204747179, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:37:06'),
-(12, 'Pratush Raj', 'Pratush', 7903537260, 'kolkata', 11, 34, 54, 5, '2022-04-15 11:37:23');
+INSERT INTO `dealer` (`id`, `user_id`, `name`, `c_name`, `phone`, `address`, `incentive`, `mor`, `day`, `eve`, `tms`) VALUES
+(1, 0, 'Pratush Raj', 'Pratush', 2147483647, 'kolkata', 11, 2334, 233, 23, '2022-04-14 10:10:08'),
+(2, 0, 'Pratush Raj', 'Pratush', 2147483647, 'kolkata', 11, 23, 23, 23, '2022-04-14 10:12:17'),
+(3, 0, 'Pratush Raj', 'Pratush', 2147483647, 'dcdc', 11, 343222, 33243, 43543, '2022-04-15 11:32:08'),
+(4, 0, 'Chicks', 'Pratush', 2147483647, 'kolkata', 11, 43, 34, 23, '2022-04-15 11:32:48'),
+(5, 0, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:33:37'),
+(6, 0, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:33:56'),
+(7, 0, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 45, 543, 54, '2022-04-15 11:34:36'),
+(8, 0, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:34:55'),
+(9, 0, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:35:34'),
+(10, 0, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:35:59'),
+(11, 0, 'Mithilesh Kumar', 'Pratush', 6204747179, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:37:06'),
+(12, 0, 'Pratush Raj', 'Pratush', 7903537260, 'kolkata', 11, 34, 54, 5, '2022-04-15 11:37:23'),
+(13, 0, 'supliers', 'dd', 3332, 'cdd', 3, 3, 2, 2, '2022-04-19 00:09:58'),
+(14, 15, 'supliers', 'ds', 23333, 'sssssssx', 2, 2, 3, 1, '2022-04-19 00:14:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `distributer`
+--
+
+CREATE TABLE `distributer` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `c_name` varchar(255) NOT NULL,
+  `phone` bigint(20) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `incentive` int(11) NOT NULL DEFAULT 0,
+  `mor` float NOT NULL DEFAULT 0,
+  `day` float NOT NULL DEFAULT 0,
+  `eve` float NOT NULL DEFAULT 0,
+  `tms` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `distributer`
+--
+
+INSERT INTO `distributer` (`id`, `user_id`, `name`, `c_name`, `phone`, `address`, `incentive`, `mor`, `day`, `eve`, `tms`) VALUES
+(1, 0, 'Pratush Raj', 'Pratush', 2147483647, 'kolkata', 11, 2334, 233, 23, '2022-04-14 10:10:08'),
+(2, 0, 'Pratush Raj', 'Pratush', 2147483647, 'kolkata', 11, 23, 23, 23, '2022-04-14 10:12:17'),
+(3, 0, 'Pratush Raj', 'Pratush', 2147483647, 'dcdc', 11, 343222, 33243, 43543, '2022-04-15 11:32:08'),
+(4, 0, 'Chicks', 'Pratush', 2147483647, 'kolkata', 11, 43, 34, 23, '2022-04-15 11:32:48'),
+(5, 0, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:33:37'),
+(6, 0, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:33:56'),
+(7, 0, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 45, 543, 54, '2022-04-15 11:34:36'),
+(8, 0, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:34:55'),
+(9, 0, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:35:34'),
+(10, 0, 'Mithilesh Kumar', 'Pratush', 2147483647, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:35:59'),
+(11, 0, 'Mithilesh Kumar', 'Pratush', 6204747179, 'kolkata', 11, 3, 3, 4, '2022-04-15 11:37:06'),
+(12, 0, 'Pratush Raj', 'Pratush', 7903537260, 'kolkata', 11, 34, 54, 5, '2022-04-15 11:37:23'),
+(13, 0, 'supliers', 'dd', 3332, 'cdd', 3, 3, 2, 2, '2022-04-19 00:09:58'),
+(14, 15, 'supliers', 'ds', 23333, 'sssssssx', 2, 2, 3, 1, '2022-04-19 00:14:28');
 
 -- --------------------------------------------------------
 
@@ -66,6 +109,7 @@ INSERT INTO `dealer` (`id`, `name`, `c_name`, `phone`, `address`, `incentive`, `
 
 CREATE TABLE `series` (
   `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alphabets` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_active` tinyint(1) DEFAULT NULL,
@@ -77,30 +121,31 @@ CREATE TABLE `series` (
 -- Dumping data for table `series`
 --
 
-INSERT INTO `series` (`id`, `name`, `alphabets`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'A-E', 'A,C,E,B,D,H,J', 1, '2020-12-26 07:19:40', '2021-04-22 16:18:50'),
-(2, 'B', 'B,I,J', 0, '2020-12-26 07:20:11', '2021-04-18 17:14:11'),
-(3, 'C', 'C,J,P,U', 0, '2020-12-26 07:20:15', '2021-04-18 17:14:16'),
-(4, 'D', 'D,F,K,L', 0, '2020-12-26 07:20:19', '2021-04-18 17:14:21'),
-(5, 'E', 'E,L,R,X', 0, '2020-12-26 07:20:22', '2021-04-18 17:14:25'),
-(6, 'F', 'F,M,T,U,V', 0, '2020-12-26 07:20:27', '2021-04-18 17:14:30'),
-(7, 'G', 'G,I,J,R', 0, '2020-12-26 07:20:31', '2021-04-18 17:14:34'),
-(8, 'H', 'H,L,Y,Z', 0, '2020-12-26 07:20:37', '2021-04-18 17:14:38'),
-(9, 'I', 'I,P,Q,R', 0, '2020-12-26 07:20:41', '2021-04-18 17:14:44'),
-(10, 'J', 'J,K,Q,V,W', 0, '2020-12-26 07:20:48', '2021-04-18 17:14:48'),
-(11, 'K', 'K,L,M,N,O', 0, '2020-12-26 07:20:52', '2020-12-26 11:13:31'),
-(12, 'L', 'L,M,S,Y,Z', 0, '2020-12-26 07:20:55', '2020-12-26 11:14:17'),
-(13, 'M', 'I,J,K', 0, '2020-12-26 10:10:47', '2020-12-26 11:14:24'),
-(14, 'N', 'G,J,L,O,P,Q', 0, '2020-12-26 10:12:08', '2020-12-26 11:14:30'),
-(15, 'Z', 'K,M,O,Y,Z', 0, '2020-12-29 17:00:15', '2021-04-18 17:14:53'),
-(16, 'B-L', 'A,B,C,D,E,G,H,J,K,L', 1, '2021-01-14 17:49:52', '2021-04-22 16:19:01'),
-(17, 'G-L', 'G,H,J,K,L', 1, '2021-04-18 17:17:58', '2021-04-22 16:19:19'),
-(18, 'Pratush Raj', 'A, C, E, B, D, F', 1, NULL, NULL),
-(19, 'MOR', 'A, C, E, G, I, K, M, J, L, N', 1, NULL, NULL),
-(20, 'Pratush Kumar', 'G,B,D,F,H', 1, NULL, NULL),
-(21, 'Pratush Kumar', 'G,B,D,F,H', 1, NULL, NULL),
-(22, 'Pratush Kumar', 'G,B,D,F,H', 1, NULL, NULL),
-(23, 'Pratush Kumar', 'G,B,D,F,H', 1, NULL, NULL);
+INSERT INTO `series` (`id`, `user_id`, `name`, `alphabets`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 1, 'A-E', 'A,C,E,B,D,H,J', 1, '2020-12-26 07:19:40', '2021-04-22 16:18:50'),
+(2, 1, 'B', 'B,I,J', 0, '2020-12-26 07:20:11', '2021-04-18 17:14:11'),
+(3, 1, 'C', 'C,J,P,U', 0, '2020-12-26 07:20:15', '2021-04-18 17:14:16'),
+(4, 1, 'D', 'D,F,K,L', 0, '2020-12-26 07:20:19', '2021-04-18 17:14:21'),
+(5, 1, 'E', 'E,L,R,X', 0, '2020-12-26 07:20:22', '2021-04-18 17:14:25'),
+(6, 1, 'F', 'F,M,T,U,V', 0, '2020-12-26 07:20:27', '2021-04-18 17:14:30'),
+(7, 1, 'G', 'G,I,J,R', 0, '2020-12-26 07:20:31', '2021-04-18 17:14:34'),
+(8, 1, 'H', 'H,L,Y,Z', 0, '2020-12-26 07:20:37', '2021-04-18 17:14:38'),
+(9, 1, 'I', 'I,P,Q,R', 0, '2020-12-26 07:20:41', '2021-04-18 17:14:44'),
+(10, 1, 'J', 'J,K,Q,V,W', 0, '2020-12-26 07:20:48', '2021-04-18 17:14:48'),
+(11, 0, 'K', 'K,L,M,N,O', 0, '2020-12-26 07:20:52', '2020-12-26 11:13:31'),
+(12, 0, 'L', 'L,M,S,Y,Z', 0, '2020-12-26 07:20:55', '2020-12-26 11:14:17'),
+(13, 0, 'M', 'I,J,K', 0, '2020-12-26 10:10:47', '2020-12-26 11:14:24'),
+(14, 0, 'N', 'G,J,L,O,P,Q', 0, '2020-12-26 10:12:08', '2020-12-26 11:14:30'),
+(15, 0, 'Z', 'K,M,O,Y,Z', 0, '2020-12-29 17:00:15', '2021-04-18 17:14:53'),
+(16, 0, 'B-L', 'A,B,C,D,E,G,H,J,K,L', 1, '2021-01-14 17:49:52', '2021-04-22 16:19:01'),
+(17, 0, 'G-L', 'G,H,J,K,L', 1, '2021-04-18 17:17:58', '2021-04-22 16:19:19'),
+(18, 0, 'Pratush Raj', 'A, C, E, B, D, F', 1, NULL, NULL),
+(19, 0, 'MOR', 'A, C, E, G, I, K, M, J, L, N', 1, NULL, NULL),
+(20, 0, 'Pratush Kumar', 'G,B,D,F,H', 1, NULL, NULL),
+(21, 0, 'Pratush Kumar', 'G,B,D,F,H', 1, NULL, NULL),
+(22, 0, 'Pratush Kumar', 'G,B,D,F,H', 1, NULL, NULL),
+(23, 0, 'Pratush Kumar', 'G,B,D,F,H', 1, NULL, NULL),
+(24, 15, 'A-B', 'A,B', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -110,6 +155,7 @@ INSERT INTO `series` (`id`, `name`, `alphabets`, `is_active`, `created_at`, `upd
 
 CREATE TABLE `sessions` (
   `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` decimal(10,2) NOT NULL DEFAULT 0.00,
@@ -122,14 +168,15 @@ CREATE TABLE `sessions` (
 -- Dumping data for table `sessions`
 --
 
-INSERT INTO `sessions` (`id`, `name`, `color`, `price`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'MOR', '#e5a824', '234343.00', 1, '2018-05-12 09:58:30', '2021-04-18 13:36:02'),
-(2, 'DAY', '#FF0000', '200.00', 1, '2018-05-12 09:58:43', '2020-12-29 16:57:15'),
-(3, 'EVE', '#FFFF00', '300.00', 1, '2018-05-27 23:32:54', '2021-02-26 14:31:51'),
-(6, 'AFTERNOON', '#00008B', '400.00', 0, '2020-12-29 16:56:07', '2020-12-29 16:57:28'),
-(7, 'Pratush Raj', '#red', '37.00', 1, '2022-04-14 05:39:25', '2022-04-14 05:39:25'),
-(8, 'Pratush Raj', '#884444', '12.00', 1, NULL, NULL),
-(9, 'Pratush Raj', '#884444', '12.00', 1, NULL, NULL);
+INSERT INTO `sessions` (`id`, `user_id`, `name`, `color`, `price`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 1, 'MOR', '#e5a824', '234343.00', 1, '2018-05-12 09:58:30', '2021-04-18 13:36:02'),
+(2, 1, 'DAY', '#FF0000', '200.00', 1, '2018-05-12 09:58:43', '2020-12-29 16:57:15'),
+(3, 1, 'EVE', '#FFFF00', '300.00', 1, '2018-05-27 23:32:54', '2021-02-26 14:31:51'),
+(6, 1, 'AFTERNOON', '#00008B', '400.00', 0, '2020-12-29 16:56:07', '2020-12-29 16:57:28'),
+(7, 1, 'Pratush Raj', '#red', '37.00', 1, '2022-04-14 05:39:25', '2022-04-14 05:39:25'),
+(8, 1, 'Pratush Raj', '#884444', '12.00', 1, NULL, NULL),
+(9, 1, 'Pratush Raj', '#884444', '12.00', 1, NULL, NULL),
+(13, 15, 'dealer', '#000000', '34.00', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -139,6 +186,7 @@ INSERT INTO `sessions` (`id`, `name`, `color`, `price`, `is_active`, `created_at
 
 CREATE TABLE `tickets` (
   `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_active` tinyint(1) DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -149,14 +197,15 @@ CREATE TABLE `tickets` (
 -- Dumping data for table `tickets`
 --
 
-INSERT INTO `tickets` (`id`, `name`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Testing', 0, '2021-04-22 12:51:14', '2021-04-24 12:37:34'),
-(2, 'ANDAMAN LOTTERY', 1, '2021-04-24 12:20:08', '2021-04-24 12:20:08'),
-(3, 'ff', 1, NULL, NULL),
-(4, 'hii', 1, NULL, NULL),
-(5, 'hii', 1, NULL, NULL),
-(6, 'grtg', 1, NULL, NULL),
-(7, 'grtg', 1, NULL, NULL);
+INSERT INTO `tickets` (`id`, `user_id`, `name`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 0, 'Testing', 0, '2021-04-22 12:51:14', '2021-04-24 12:37:34'),
+(2, 0, 'ANDAMAN LOTTERY', 1, '2021-04-24 12:20:08', '2021-04-24 12:20:08'),
+(3, 0, 'ff', 1, NULL, NULL),
+(4, 0, 'hii', 1, NULL, NULL),
+(5, 0, 'hii', 1, NULL, NULL),
+(6, 0, 'grtg', 1, NULL, NULL),
+(7, 0, 'grtg', 1, NULL, NULL),
+(8, 15, 'lol', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -337,7 +386,8 @@ INSERT INTO `ticket_session_names` (`id`, `ticket_id`, `session_id`, `day`, `nam
 (207, 2, 3, 'Wed', 'FUTURE MERCURY', '2021-05-15 11:16:59', '2021-05-15 11:16:59'),
 (208, 2, 3, 'Thu', 'FUTURE VENUS', '2021-05-15 11:16:59', '2021-05-15 11:16:59'),
 (209, 2, 3, 'Fri', 'FUTURE MARS', '2021-05-15 11:16:59', '2021-05-15 11:16:59'),
-(210, 2, 3, 'Sat', 'FUTURE JUPITER', '2021-05-15 11:16:59', '2021-05-15 11:16:59');
+(210, 2, 3, 'Sat', 'FUTURE JUPITER', '2021-05-15 11:16:59', '2021-05-15 11:16:59'),
+(211, 8, 2, 'Sun', 'de', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -367,7 +417,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `company_name`, `phone_no`, `adress`, `incentive`, `email`, `pass`, `user_role`, `active`, `last_active`, `created_on`) VALUES
 (1, 'admin', 'lotteryjagat', 1234567890, 'kolkata', 122, 'lottery@gmail.com', 'admin', 1, 1, '2022-04-05 21:26:15', '2022-04-06 00:57:01'),
 (14, 'Pratush Kumar', 'Pratush raaaj', 2147483647, 'kolkata', 11, 'dolibarr13', 'dolibarr13@123', 2, 0, NULL, '2022-04-13 10:11:35'),
-(15, 'Pratush Raj', 'Pratush', 2147483647, 'kolkata', 323, 'p.raj', '123456', 2, 0, NULL, '2022-04-13 10:31:50');
+(15, 'Pratush Raj', 'Pratush', 2147483647, 'kolkata', 323, 'p.raj', '123456', 2, 0, NULL, '2022-04-13 10:31:50'),
+(16, 'Pratush Raj', 'dd', 44343, 'ks', 2, 'fhhcdhj@gmail.com', 'lolol', 2, 0, NULL, '2022-04-18 23:18:18'),
+(17, 'customer', 'dhccb', 65, 'xgsvg', 6, 'cust@gmail.com', '12345', 3, 0, NULL, '2022-04-18 23:19:40');
 
 --
 -- Indexes for dumped tables
@@ -377,6 +429,12 @@ INSERT INTO `users` (`id`, `name`, `company_name`, `phone_no`, `adress`, `incent
 -- Indexes for table `dealer`
 --
 ALTER TABLE `dealer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `distributer`
+--
+ALTER TABLE `distributer`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -424,25 +482,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `dealer`
 --
 ALTER TABLE `dealer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `distributer`
+--
+ALTER TABLE `distributer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `series`
 --
 ALTER TABLE `series`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `sessions`
 --
 ALTER TABLE `sessions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `ticket_prizes`
@@ -454,13 +518,13 @@ ALTER TABLE `ticket_prizes`
 -- AUTO_INCREMENT for table `ticket_session_names`
 --
 ALTER TABLE `ticket_session_names`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=211;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=212;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

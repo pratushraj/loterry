@@ -1,5 +1,6 @@
 <?php
 session_start();
+$user = $_SESSION['USER_ROLE'];
 include 'conn.php';
 if(!isset($_SESSION['USER_ROLE'])) {
   header("Location: login.php");
@@ -26,8 +27,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>';
         } 
       }else {
+        if($user == 1) {
+          $user_role = 2;
+        } else if($user == 2) {
+          $user_role = 3;
+        } else if($user == 3) {
+          $user_role = 4;
+        }
         $sql = "INSERT INTO users (`name`, `company_name`, `phone_no`, `adress`, `incentive`, `email`, `pass`, `user_role`) 
-        VALUES ('".$_POST['nam']."', '".$_POST['com']."', ".$_POST['phone'].", '".$_POST['add']."', ".$_POST['inc'].", '".$_POST['us']."', '".$_POST['pas']."', '2');";
+        VALUES ('".$_POST['nam']."', '".$_POST['com']."', ".$_POST['phone'].", '".$_POST['add']."', ".$_POST['inc'].", '".$_POST['us']."', '".$_POST['pas']."', '".$user_role."');";
         $result = mysqli_query($conn, $sql);
         if(isset($result)) {
           echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -165,6 +173,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                           </div>
                         </div>
                       </div>
+                      <p class="card-description"> Session Wise Report *  </p>
+                      <div class="row">
+
+                      <?php
+                          $sql_select = "SELECT * FROM `sessions` WHERE `user_id` = ".$user_id;
+                          $fetch = mysqli_query($conn, $sql_select);
+                          if($fetch) {
+                            if (mysqli_num_rows($fetch) > 0) {
+                              $i = 1;
+                              while($row = mysqli_fetch_assoc($fetch)) {
+                                echo '<div class="col-md-6">
+                                <div class="form-group row">
+                                  <label class="col-sm-3 col-form-label">'.$row['name'].' *</label>
+                                  <div class="col-sm-9">
+                                    <input type="number" class="form-control" placeholder="Type Rate" name="mor" value="'.$row['price'].'" required/>
+                                  </div>
+                                </div>
+                              </div>';
+                              }
+                            }
+                          }
+                      ?>
+                      </div>
 
 
                   </div>
@@ -267,7 +298,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                           </div>
                         </div>
                       </div>
-
+                      <p class="card-description"> Session Wise Report *  </p>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">MOR *</label>
+                            <div class="col-sm-9">
+                              <input type="number" class="form-control" placeholder="Type Rate" name="mor" required/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">DAY *</label>
+                            <div class="col-sm-9">
+                            <input type="number" class="form-control" placeholder="Type Rate" name="day" required/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
                   </div>
                 </div>
@@ -301,7 +350,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         </thead>
                         <tbody>
                         <?php
-                          $sql_select = "SELECT * FROM users WHERE user_role = 2";
+                                if($user == 1) {
+                                  $user_role = 2;
+                                } else if($user == 2) {
+                                  $user_role = 3;
+                                } else if($user == 3) {
+                                  $user_role = 4;
+                                }
+                          $sql_select = "SELECT * FROM users WHERE user_role = $user_role";
                           $fetch = mysqli_query($conn, $sql_select);
                           if($fetch) {
                             if (mysqli_num_rows($fetch) > 0) {

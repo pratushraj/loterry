@@ -1,5 +1,8 @@
 <?php
 session_start();
+$user = $_SESSION['USER_ROLE'];
+$user_id = $_SESSION['USER_ID'];
+// var_dump($_SESSION);
 include 'conn.php';
 if(!isset($_SESSION['USER_ROLE'])) {
   header("Location: login.php");
@@ -8,13 +11,20 @@ include 'header.php';
 include 'nav.php';
 include 'top-nav.php';
 // dealer
+if($user == 1) {
+  $user_role = 2;
+} else if($user == 2) {
+  $user_role = 3;
+} else if($user == 3) {
+  $user_role = 4;
+}
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
   if(isset($_POST['bts'])) {
     if($_POST['bts'] == "Submit") {
 
-        $sql = "INSERT INTO dealer (`name`, `c_name`, `phone`, `address`, `incentive`, `mor`, `day`, `eve`) 
-        VALUES ('".$_POST['nam']."', '".$_POST['com']."', ".$_POST['phone'].", '".$_POST['add']."', ".$_POST['inc'].", '".$_POST['mor']."', '".$_POST['day']."', '".$_POST['eve']."');";
+        $sql = "INSERT INTO dealer (`name`, `c_name`, `phone`, `address`, `incentive`, `mor`, `day`, `eve`, `user_id`) 
+        VALUES ('".$_POST['nam']."', '".$_POST['com']."', ".$_POST['phone'].", '".$_POST['add']."', ".$_POST['inc'].", '".$_POST['mor']."', '".$_POST['day']."', '".$_POST['eve']."', '".$user_id."');";
         $result = mysqli_query($conn, $sql);
         if($result) {
           echo '<div id="alert" class="alert alert-success alert-dismissible fade show" role="alert">
@@ -143,35 +153,47 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                       </div>
                       <br><br>
-                      <p class="card-description"> Session Wise Report *  </p>
+                      <p class="card-description"> Create the dealer credentials :  </p>
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">MOR *</label>
+                            <label class="col-sm-3 col-form-label">User *</label>
                             <div class="col-sm-9">
-                              <input type="number" class="form-control" placeholder="Type Rate" name="mor" required/>
+                              <input type="text" class="form-control" placeholder="Enter the deler Email.." name="us" required/>
                             </div>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">DAY *</label>
+                            <label class="col-sm-3 col-form-label">Password *</label>
                             <div class="col-sm-9">
-                            <input type="number" class="form-control" placeholder="Type Rate" name="day" required/>
+                              <input type="password" class="form-control" placeholder="Enter the password.." name="pas" required/>
                             </div>
                           </div>
                         </div>
                       </div>
-
+                      <p class="card-description"> Session Wise Report *  </p>
                       <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">EVE *</label>
-                            <div class="col-sm-9">
-                            <input type="number" class="form-control" placeholder="Type Rate" name="eve" required/>
-                            </div>
-                          </div>
-                        </div>
+
+                      <?php
+                          $sql_select = "SELECT * FROM `sessions` WHERE `user_id` = ".$user_id;
+                          $fetch = mysqli_query($conn, $sql_select);
+                          if($fetch) {
+                            if (mysqli_num_rows($fetch) > 0) {
+                              $i = 1;
+                              while($row = mysqli_fetch_assoc($fetch)) {
+                                echo '<div class="col-md-6">
+                                <div class="form-group row">
+                                  <label class="col-sm-3 col-form-label">'.$row['name'].' *</label>
+                                  <div class="col-sm-9">
+                                    <input type="number" class="form-control" placeholder="Type Rate" name="mor" value="'.$row['price'].'" required/>
+                                  </div>
+                                </div>
+                              </div>';
+                              }
+                            }
+                          }
+                      ?>
                       </div>
 
                   </div>
@@ -319,7 +341,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         </thead>
                         <tbody>
                         <?php
-                          $sql_select = "SELECT * FROM dealer";
+                          $sql_select = "SELECT * FROM dealer WHERE `user_id`= ".$user_id;
                           $fetch = mysqli_query($conn, $sql_select);
                           if($fetch) {
                             if (mysqli_num_rows($fetch) > 0) {

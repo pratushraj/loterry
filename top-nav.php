@@ -1,3 +1,21 @@
+<?php
+// session_start();
+$user = $_SESSION['USER_ROLE'];
+$NAME = $_SESSION['NAME'];
+$EMAIL = $_SESSION['Email'];
+$user_id = $_SESSION['USER_ID'];
+// var_dump($_SESSION);
+if($user == 1) {
+  $who = "Super Admin";
+} else if($user == 2) {
+  $who = "Dealer";
+} else if($user == 3) {
+  $who = "Suppliers";
+}
+
+include 'conn.php';
+?>
+
 <nav class="navbar p-0 fixed-top d-flex flex-row">
     <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
       <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
@@ -17,8 +35,8 @@
         <li class="nav-item dropdown">
           <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
             <div class="navbar-profile">
-              <img class="img-xs rounded-circle" src="../../assets/images/faces/face15.jpg" alt="">
-              <p class="mb-0 d-none d-sm-block navbar-profile-name">Admin Name</p>
+              <img class="img-xs rounded-circle" src="assets/images/faces/face15.jpg" alt="">
+              <p class="mb-0 d-none d-sm-block navbar-profile-name"><?php echo $EMAIL;?></p>
               <i class="mdi mdi-menu-down d-none d-sm-block"></i>
             </div>
           </a>

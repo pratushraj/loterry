@@ -14,9 +14,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         // print_r($_POST['alphabet_group']);
         // echo $List = implode(', ', $_POST['alphabet_group']);
         // exit;
-        $sql = "INSERT INTO `series` (`name`, `alphabets`, `is_active`) 
-        VALUES ('".$_POST['nam']."', '".implode(',', $_POST['alphabet_group'])."', 1);";
-
+        $sql = "INSERT INTO `series` (`name`, `alphabets`, `is_active`, `user_id`) 
+        VALUES ('".$_POST['nam']."', '".implode(',', $_POST['alphabet_group'])."', 1, '".$user_id."');";
+// echo $sql;exit;
         $result = mysqli_query($conn, $sql);
         if($result) {
           echo '<div id="alert" class="alert alert-success alert-dismissible fade show" role="alert">
@@ -408,7 +408,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         </thead>
                         <tbody>
                         <?php
-                          $sql_select = "SELECT * FROM `series` WHERE `is_active` = 1 ";
+                          $sql_select = "SELECT * FROM `series` WHERE `user_id` = ".$user_id;
                           $fetch = mysqli_query($conn, $sql_select);
                           if($fetch) {
                             if (mysqli_num_rows($fetch) > 0) {

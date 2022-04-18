@@ -12,8 +12,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   if(isset($_POST['bts'])) {
     if($_POST['bts'] == "Submit") {
 
-        $sql = "INSERT INTO `sessions` (`name`, `color`, `price`, `is_active`) 
-        VALUES ('".$_POST['nam']."', '".$_POST['col']."', '".$_POST['pric']."', 1);";
+        $sql = "INSERT INTO `sessions` (`name`, `color`, `price`, `is_active`, `user_id`) 
+        VALUES ('".$_POST['nam']."', '".$_POST['col']."', '".$_POST['pric']."', 1, '".$user_id."');";
 
         $result = mysqli_query($conn, $sql);
         if($result) {
@@ -226,7 +226,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         </thead>
                         <tbody>
                         <?php
-                          $sql_select = "SELECT * FROM `sessions` WHERE `is_active` = 1 ";
+                          $sql_select = "SELECT * FROM `sessions` WHERE `user_id` = ".$user_id;
                           $fetch = mysqli_query($conn, $sql_select);
                           if($fetch) {
                             if (mysqli_num_rows($fetch) > 0) {

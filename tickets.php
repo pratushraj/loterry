@@ -14,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       // var_dump($_POST['rowid']);
       
       if($_POST['num']) {
-        $sql = "INSERT INTO `tickets` (`name`) VALUES ('".$_POST['num']."');";
+        $sql = "INSERT INTO `tickets` (`name`, `user_id`) VALUES ('".$_POST['num']."', '".$user_id."');";
         $result = mysqli_query($conn, $sql);
         $id= mysqli_insert_id($conn);
 
@@ -852,7 +852,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         </thead>
                         <tbody>
                         <?php
-                          $sql_select = "SELECT * FROM `tickets` WHERE `is_active` = 1 ";
+                          $sql_select = "SELECT * FROM `tickets` WHERE `user_id` =".$user_id;
                           $fetch = mysqli_query($conn, $sql_select);
                           if($fetch) {
                             if (mysqli_num_rows($fetch) > 0) {

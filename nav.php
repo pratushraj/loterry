@@ -1,3 +1,24 @@
+<?php
+// session_start();
+$user = $_SESSION['USER_ROLE'];
+$NAME = $_SESSION['NAME'];
+// var_dump($_SESSION);
+if($user == 1) {
+  $who = "Super Admin";
+} else if($user == 2) {
+  $who = "Distributer";
+} else if($user == 3) {
+  $who = "Dealer";
+}
+
+include 'conn.php';
+if($user == 1) {
+  $dis = '<li class="nav-item"> <a class="nav-link" href="dealer.php">Dealer</a></li>';
+} else if($user == 2) {
+  $dis = '<li class="nav-item"> <a class="nav-link" href="dealer.php">Suppliers</a></li>';
+}
+?>
+
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
       <a class="sidebar-brand brand-logo" href="../../index.html"><img src="assets/images/logo.svg" alt="logo" /></a>
@@ -12,8 +33,8 @@
               <span class="count bg-success"></span>
             </div>
             <div class="profile-name">
-              <h5 class="mb-0 font-weight-normal">Name</h5>
-              <span>Super Admin</span>
+              <h5 class="mb-0 font-weight-normal"><?php echo $NAME;?></h5>
+              <span><?php echo $who;?></span>
             </div>
           </div>
           <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -75,7 +96,8 @@
         <div class="collapse" id="dashboard">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="distributer.php">Distributors</a></li>
-            <li class="nav-item"> <a class="nav-link" href="dealer.php">Dealer</a></li>
+            <?php echo $dis?>
+            <!-- <li class="nav-item"> <a class="nav-link" href="dealer.php">Dealer</a></li> -->
             <li class="nav-item"> <a class="nav-link" href="session.php">Sessions</a></li>
             <li class="nav-item"> <a class="nav-link" href="series.php">Series</a></li>
             <li class="nav-item"> <a class="nav-link" href="tickets.php">Tickets</a></li>
